@@ -115,15 +115,17 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // clear default text
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
     
     // restore default text
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if topTextField.isFirstResponder || topTextField.text!.isEmpty{
+        if topTextField.text!.isEmpty{
             topTextField.text = "TOP"
         }
-        else if bottomTextField.isFirstResponder || bottomTextField.text!.isEmpty{
+        else if bottomTextField.text!.isEmpty{
             bottomTextField.text = "BOTTOM"
         }
     }

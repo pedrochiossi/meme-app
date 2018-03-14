@@ -7,10 +7,17 @@
 //
 import UIKit
 
-class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
-      
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // Custom TextAttributes
+    let memeTextAttributes:[String:Any] = [
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
+        NSAttributedStringKey.strokeWidth.rawValue: -5.0]
+    
     // MARK: Outlets
-
+    
     @IBOutlet weak var pickedImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
@@ -18,19 +25,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
-   
-    // initializing custom attributes
-    let memeTextAttributes:[String:Any] = [
-        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
-        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
-        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
-        NSAttributedStringKey.strokeWidth.rawValue: -5.0]
+    
     
     // MARK: Lyfe Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         //set defaults
         pickedImageView.contentMode = .scaleAspectFit
         configure(topTextField, defaultText: "TOP")
@@ -52,13 +53,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         unsubscribeFromKeyboardNotifications()
     }
     
-
+    
     func configure(_ textField: UITextField, defaultText: String){
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.text = defaultText
         textField.textAlignment = .center
     }
+    
     
     
     //MARK: Notification methods
@@ -99,38 +101,16 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return keyboardSize.cgRectValue.height
     }
     
-    //MARK: TextFields methods
-    
-    // clear default text
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
-            textField.text = ""
-        }
-    }
-    
-    // restore default text
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if topTextField.text!.isEmpty{
-            topTextField.text = "TOP"
-        } else if bottomTextField!.isEmpty {
-            bottomTextField.text = "BOTTOM"
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     
     // MARK: Image methods
-    // get image from ImagePickerController and load on imageView
+    
+    // Get image from ImagePickerController and load on imageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[ UIImagePickerControllerOriginalImage] as? UIImage{
             pickedImageView.image = image
             dismiss(animated: true, completion: nil)
         }
-    
+        
     }
     
     @IBAction func pickImageFromCamera(_ sender: Any) {
@@ -153,12 +133,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func navToolbarHide(_ hide: Bool){
         toolbar.isHidden = hide
         self.navigationController?.setNavigationBarHidden(hide,animated: true)
-
+        
     }
     
     
     // MARK: Meme methods
-  
+    
     func savememe(memedImage: UIImage) {
         // create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: memedImage)
@@ -169,7 +149,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         // Hide toolbar and navbar
         navToolbarHide(true)
-   
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -188,13 +168,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if success{
                 self.savememe(memedImage: memeToShare)
             }
-            present(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }
-             
-    @IBAction func cancelMeme(_ sender: Any) {
-        pickedImageView.image = nil
-        topTextField?.text = "TOP"
-        bottomTextField?.text = "BOTTOM"
-        self.view.setNeedsDisplay()
     }
+    
+    @IBAction func cancelMeme(_ sender: Any) {
+            pickedImageView.image = nil
+            topTextField?.text = "TOP"
+            bottomTextField?.text = "BOTTOM"
+            self.view.setNeedsDisplay()
+        }
+        
 }

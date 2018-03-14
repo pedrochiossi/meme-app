@@ -30,18 +30,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
         NSAttributedStringKey.strokeWidth.rawValue: -5.0]
     
-    // creating Meme object for saving
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-       
         //set delegates
         topTextField.delegate = self
         bottomTextField.delegate = self
@@ -49,13 +43,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         //set defaults
         pickedImageView.contentMode = .scaleAspectFit
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        topTextField?.text = "TOP"
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
-        bottomTextField?.text = "BOTTOM"
-        
+        configure(topTextField, defaultText: "TOP")
+        configure(bottomTextField, defaultText: "BOTTOM")
         
         
         
@@ -77,6 +66,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
 
+    func configure(_ textField: UITextField, defaultText: String){
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = defaultText
+        textField.textAlignment = .center
+    }
+    
     
     
     
@@ -95,12 +90,17 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @objc func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
+        self.navigationController?.navigationBar.alpha = 1.0
+        
     }
     
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder{
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+            // alpha changed to see bottom text
+            self.navigationController?.navigationBar.alpha = 0.0
         }
         
     }
@@ -147,21 +147,24 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     }
     
+   
+    
     
     
     
     @IBAction func pickImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        pickanImage(from: .camera)
         }
     
-    
     @IBAction func pickImageFromAlbum(_ sender: Any) {
+        pickanImage(from: .photoLibrary)
+    }
+    
+    
+    func pickanImage(from source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
     }
     

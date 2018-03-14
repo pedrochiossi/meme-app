@@ -30,26 +30,15 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
         NSAttributedStringKey.strokeWidth.rawValue: -5.0]
     
-    
-   
     // MARK: Lyfe Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
-        //set delegates
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-        
-        
+     
         //set defaults
         pickedImageView.contentMode = .scaleAspectFit
         configure(topTextField, defaultText: "TOP")
         configure(bottomTextField, defaultText: "BOTTOM")
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +58,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
 
     func configure(_ textField: UITextField, defaultText: String){
+        textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.text = defaultText
         textField.textAlignment = .center
@@ -85,8 +75,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func unsubscribeFromKeyboardNotifications() {
         
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -100,7 +89,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder{
             
-            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+            view.frame.origin.y -= getKeyboardHeight(notification)
             // alpha changed to see bottom text
             self.navigationController?.navigationBar.alpha = 0.0
         }
@@ -127,8 +116,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func textFieldDidEndEditing(_ textField: UITextField) {
         if topTextField.text!.isEmpty{
             topTextField.text = "TOP"
-        }
-        else if bottomTextField.text!.isEmpty{
+        } else if bottomTextField!.isEmpty {
             bottomTextField.text = "BOTTOM"
         }
     }
@@ -143,8 +131,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     
     // MARK: Image methods
-    
-    
     // get image from ImagePickerController and load on imageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[ UIImagePickerControllerOriginalImage] as? UIImage{
@@ -154,14 +140,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     }
     
-   
-    
-    
-    
-    
     @IBAction func pickImageFromCamera(_ sender: Any) {
         pickanImage(from: .camera)
-        }
+    }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
         pickanImage(from: .photoLibrary)
@@ -212,12 +193,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let memeToShare = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memeToShare], applicationActivities: nil)
         activityVC.completionWithItemsHandler = {activity, success, items, error in
-        if success{
-            self.savememe(memedImage: memeToShare)
+            if success{
+                self.savememe(memedImage: memeToShare)
             }
+            present(activityVC, animated: true, completion: nil)
         }
-        present(activityVC, animated: true, completion: nil)
-    }
+        
             
         
     @IBAction func cancelMeme(_ sender: Any) {

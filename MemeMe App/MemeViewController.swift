@@ -31,6 +31,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         NSAttributedStringKey.strokeWidth.rawValue: -5.0]
     
     
+   
+    // MARK: Lyfe Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Disable camera button if not available, share button disabled without an image
+        // Disable camera button if not available, share button disabled without an image.
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
         shareButton.isEnabled = pickedImageView.image != nil
@@ -73,7 +75,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    
+    //MARK: Notification methods
     
     func subscribeToKeyboardNotifications() {
         
@@ -112,6 +114,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return keyboardSize.cgRectValue.height
     }
     
+    //MARK: TextFields methods
     
     // clear default text
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -137,6 +140,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         textField.resignFirstResponder()
         return true
     }
+    
+    
+    // MARK: Image methods
+    
     
     // get image from ImagePickerController and load on imageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -176,6 +183,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
+    // MARK: Meme methods
   
     func savememe(memedImage: UIImage) {
         // create the meme

@@ -168,8 +168,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if success{
                 self.savememe(memedImage: memeToShare)
             }
-            self.present(activityVC, animated: true, completion: nil)
         }
+        present(activityVC, animated: true, completion: nil)
     }
     
     @IBAction func cancelMeme(_ sender: Any) {

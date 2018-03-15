@@ -5,12 +5,10 @@
 //  Created by Pedro De Morais Chiossi on 11/03/18.
 //  Copyright © 2018 Pedro Chiossi. All rights reserved.
 //
-
 import UIKit
 
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
-    
-    
+      
     // MARK: Outlets
 
     @IBOutlet weak var pickedImageView: UIImageView!
@@ -21,8 +19,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
    
-    
-    
     // initializing custom attributes
     let memeTextAttributes:[String:Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
@@ -121,9 +117,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-  
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -188,7 +181,6 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return memedImage
     }
     
-    
     @IBAction func shareMeme(_ sender: Any) {
         let memeToShare = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memeToShare], applicationActivities: nil)
@@ -198,18 +190,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
             present(activityVC, animated: true, completion: nil)
         }
-        
-            
-        
+             
     @IBAction func cancelMeme(_ sender: Any) {
         pickedImageView.image = nil
         topTextField?.text = "TOP"
         bottomTextField?.text = "BOTTOM"
         self.view.setNeedsDisplay()
     }
-    
-    
-    
-    
 }
-

@@ -9,14 +9,20 @@
 /* Begin PBXBuildFile section */
 		EB39241E2058C5CA00062A66 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39241D2058C5CA00062A66 /* Meme.swift */; };
 		EB7C35A3205A1CBD004CDC4B /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7C35A2205A1CBD004CDC4B /* TextFieldExtension.swift */; };
+		EBB2C19C2070A0F2006EE0B5 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2C19B2070A0F2006EE0B5 /* MemeTableViewCell.swift */; };
+		EBB3AA612071163000FD93B9 /* NewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBB3AA602071163000FD93B9 /* NewStoryboard.storyboard */; };
 		EBBAE28B2058834E002022E3 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBBAE28A2058834D002022E3 /* impact.ttf */; };
 		EBBE801A2055DC3E009B9430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE80192055DC3E009B9430 /* AppDelegate.swift */; };
-		EBBE801C2055DC3E009B9430 /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE801B2055DC3E009B9430 /* MemeViewController.swift */; };
+		EBBE801C2055DC3E009B9430 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE801B2055DC3E009B9430 /* MemeEditorViewController.swift */; };
 		EBBE801F2055DC3E009B9430 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE801D2055DC3E009B9430 /* Main.storyboard */; };
 		EBBE80212055DC3E009B9430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBE80202055DC3E009B9430 /* Assets.xcassets */; };
 		EBBE80242055DC3E009B9430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBE80222055DC3E009B9430 /* LaunchScreen.storyboard */; };
 		EBBE802F2055DC3E009B9430 /* MemeMe_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE802E2055DC3E009B9430 /* MemeMe_AppTests.swift */; };
 		EBBE803A2055DC3E009B9430 /* MemeMe_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE80392055DC3E009B9430 /* MemeMe_AppUITests.swift */; };
+		EBED4066206DBD6700E0686B /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED4065206DBD6700E0686B /* SentMemesTableViewController.swift */; };
+		EBED4068206DBD9900E0686B /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED4067206DBD9900E0686B /* SentMemesCollectionViewController.swift */; };
+		EBED406A206DBE9A00E0686B /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED4069206DBE9A00E0686B /* MemeDetailViewController.swift */; };
+		EBED406C206ED5DE00E0686B /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED406B206ED5DE00E0686B /* MemeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +45,12 @@
 /* Begin PBXFileReference section */
 		EB39241D2058C5CA00062A66 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		EB7C35A2205A1CBD004CDC4B /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		EBB2C19B2070A0F2006EE0B5 /* MemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
+		EBB3AA602071163000FD93B9 /* NewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewStoryboard.storyboard; sourceTree = "<group>"; };
 		EBBAE28A2058834D002022E3 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = SOURCE_ROOT; };
 		EBBE80162055DC3E009B9430 /* MemeMe App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemeMe App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBE80192055DC3E009B9430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EBBE801B2055DC3E009B9430 /* MemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeViewController.swift; sourceTree = "<group>"; };
+		EBBE801B2055DC3E009B9430 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
 		EBBE801E2055DC3E009B9430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBBE80202055DC3E009B9430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBBE80232055DC3E009B9430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +61,10 @@
 		EBBE80352055DC3E009B9430 /* MemeMe AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MemeMe AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBE80392055DC3E009B9430 /* MemeMe_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMe_AppUITests.swift; sourceTree = "<group>"; };
 		EBBE803B2055DC3E009B9430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBED4065206DBD6700E0686B /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
+		EBED4067206DBD9900E0686B /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
+		EBED4069206DBE9A00E0686B /* MemeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDetailViewController.swift; sourceTree = "<group>"; };
+		EBED406B206ED5DE00E0686B /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +118,15 @@
 				EB39241D2058C5CA00062A66 /* Meme.swift */,
 				EBBAE28A2058834D002022E3 /* impact.ttf */,
 				EBBE80192055DC3E009B9430 /* AppDelegate.swift */,
-				EBBE801B2055DC3E009B9430 /* MemeViewController.swift */,
+				EBBE801B2055DC3E009B9430 /* MemeEditorViewController.swift */,
 				EB7C35A2205A1CBD004CDC4B /* TextFieldExtension.swift */,
+				EBED4065206DBD6700E0686B /* SentMemesTableViewController.swift */,
+				EBB2C19B2070A0F2006EE0B5 /* MemeTableViewCell.swift */,
+				EBED4067206DBD9900E0686B /* SentMemesCollectionViewController.swift */,
 				EBBE801D2055DC3E009B9430 /* Main.storyboard */,
+				EBED4069206DBE9A00E0686B /* MemeDetailViewController.swift */,
+				EBB3AA602071163000FD93B9 /* NewStoryboard.storyboard */,
+				EBED406B206ED5DE00E0686B /* MemeCollectionViewCell.swift */,
 				EBBE80202055DC3E009B9430 /* Assets.xcassets */,
 				EBBE80222055DC3E009B9430 /* LaunchScreen.storyboard */,
 				EBBE80252055DC3E009B9430 /* Info.plist */,
@@ -197,7 +215,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Pedro Chiossi";
 				TargetAttributes = {
 					EBBE80152055DC3E009B9430 = {
@@ -244,6 +262,7 @@
 				EBBAE28B2058834E002022E3 /* impact.ttf in Resources */,
 				EBBE80242055DC3E009B9430 /* LaunchScreen.storyboard in Resources */,
 				EBBE80212055DC3E009B9430 /* Assets.xcassets in Resources */,
+				EBB3AA612071163000FD93B9 /* NewStoryboard.storyboard in Resources */,
 				EBBE801F2055DC3E009B9430 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,9 +288,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBBE801C2055DC3E009B9430 /* MemeViewController.swift in Sources */,
+				EBBE801C2055DC3E009B9430 /* MemeEditorViewController.swift in Sources */,
 				EB7C35A3205A1CBD004CDC4B /* TextFieldExtension.swift in Sources */,
+				EBED406C206ED5DE00E0686B /* MemeCollectionViewCell.swift in Sources */,
+				EBED4068206DBD9900E0686B /* SentMemesCollectionViewController.swift in Sources */,
 				EB39241E2058C5CA00062A66 /* Meme.swift in Sources */,
+				EBED406A206DBE9A00E0686B /* MemeDetailViewController.swift in Sources */,
+				EBB2C19C2070A0F2006EE0B5 /* MemeTableViewCell.swift in Sources */,
+				EBED4066206DBD6700E0686B /* SentMemesTableViewController.swift in Sources */,
 				EBBE801A2055DC3E009B9430 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +365,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -348,6 +373,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -398,6 +424,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -405,6 +432,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

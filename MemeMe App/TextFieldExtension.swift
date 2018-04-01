@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MemeViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
 
     
     // clears default text

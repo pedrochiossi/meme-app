@@ -1,5 +1,5 @@
 //
-//  MemeViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe App
 //
 //  Created by Pedro De Morais Chiossi on 11/03/18.
@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // Custom TextAttributes
     let memeTextAttributes:[String:Any] = [
@@ -15,6 +15,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
         NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 40)!,
         NSAttributedStringKey.strokeWidth.rawValue: -5.0]
+    
+    
     
     // MARK: Outlets
     
@@ -25,6 +27,11 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var navigationbar: UINavigationBar!
+    
+    var memeToEdit: Meme!
+    var memeToEditIndex: Int!
+    
     
     
     // MARK: Lyfe Cycle
@@ -34,8 +41,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         //set defaults
         pickedImageView.contentMode = .scaleAspectFit
-        configure(topTextField, defaultText: "TOP")
-        configure(bottomTextField, defaultText: "BOTTOM")
+        if memeToEdit != nil {
+            pickedImageView.image = memeToEdit.originalImage
+            configure(topTextField, defaultText: memeToEdit.topText)
+            configure(bottomTextField, defaultText: memeToEdit.bottomText)
+        } else {
+            configure(topTextField, defaultText: "TOP")
+            configure(bottomTextField, defaultText: "BOTTOM")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +92,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @objc func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
-        self.navigationController?.navigationBar.alpha = 1.0
+        navigationbar.alpha = 1.0
         
     }
     
@@ -89,7 +102,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             view.frame.origin.y -= getKeyboardHeight(notification)
             // alpha changed to see bottom text
-            self.navigationController?.navigationBar.alpha = 0.0
+            navigationbar.alpha = 0.0
         }
         
     }
@@ -132,9 +145,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func navToolbarHide(_ hide: Bool){
         toolbar.isHidden = hide
-        self.navigationController?.setNavigationBarHidden(hide,animated: true)
-        
+        navigationbar.isHidden = hide
     }
+    
+    
     
     
     // MARK: Meme methods
@@ -142,6 +156,16 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func savememe(memedImage: UIImage) {
         // create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: pickedImageView.image!, memedImage: memedImage)
+        
+        // add it to memes array in AppDelegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        // remove old memeToEdit in memes array
+        if self.memeToEdit != nil{
+            appDelegate.memes.remove(at: self.memeToEditIndex)
+        }
+        self.performSegue(withIdentifier: "goBackToTabController", sender: self)
     }
     
     
@@ -164,19 +188,16 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func shareMeme(_ sender: Any) {
         let memeToShare = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memeToShare], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
         activityVC.completionWithItemsHandler = {activity, success, items, error in
             if success{
                 self.savememe(memedImage: memeToShare)
             }
         }
-        present(activityVC, animated: true, completion: nil)
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
-            pickedImageView.image = nil
-            topTextField?.text = "TOP"
-            bottomTextField?.text = "BOTTOM"
-            self.view.setNeedsDisplay()
-        }
-        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

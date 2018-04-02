@@ -55,7 +55,7 @@ class SentMemesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MemeTableViewCell
         let selectedMeme = self.memes[indexPath.row]
         cell.memeImage.image = selectedMeme.memedImage
-        cell.memeLabel.text = "\(selectedMeme.topText) ... \(selectedMeme.bottomText)"
+        cell.memeLabel.text = "\(selectedMeme.topText)...\(selectedMeme.bottomText)"
         return cell
     }
 
@@ -75,5 +75,8 @@ class SentMemesTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func unwindToTableView(segue: UIStoryboardSegue) {
+        
+    }
     
 }

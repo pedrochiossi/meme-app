@@ -40,7 +40,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         
         //set defaults
-        pickedImageView.contentMode = .scaleAspectFit
         if memeToEdit != nil {
             pickedImageView.image = memeToEdit.originalImage
             configure(topTextField, defaultText: memeToEdit.topText)
@@ -165,7 +164,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if self.memeToEdit != nil{
             appDelegate.memes.remove(at: self.memeToEditIndex)
         }
-        self.performSegue(withIdentifier: "goBackToTabController", sender: self)
     }
     
     
@@ -185,6 +183,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return memedImage
     }
     
+
+    
+    
     @IBAction func shareMeme(_ sender: Any) {
         let memeToShare = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memeToShare], applicationActivities: nil)
@@ -192,6 +193,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityVC.completionWithItemsHandler = {activity, success, items, error in
             if success{
                 self.savememe(memedImage: memeToShare)
+                self.performSegue(withIdentifier: "goBackToTableView", sender: self)
             }
         }
     }
